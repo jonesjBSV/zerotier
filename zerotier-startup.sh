@@ -34,7 +34,8 @@ check_zerotier_installed() {
 # Start ZeroTier service
 start_zerotier() {
     log "Starting ZeroTier service..."
-    systemctl start zerotier-one
+    # Start the ZeroTier daemon directly
+    nohup zerotier-one &> /dev/null &
     sleep 5  # Wait for service to start
 }
 
