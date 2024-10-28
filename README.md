@@ -22,7 +22,12 @@ chmod +x zerotier-startup.sh
 export ZEROTIER_NETOWORK_ID="your_network_id"
 ```
 
-3. Run the script:
+3. Set the ZeroTier Central API token:
+```
+export ZEROTIER_CENTRAL_TOKEN="your_api_token"
+```
+
+4. Run the script:
 ```
 sudo ./zerotier-startup.sh
 ```
