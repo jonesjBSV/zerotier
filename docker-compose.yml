@@ -1,0 +1,16 @@
+version: '3'
+services:
+  zerotier:
+    build: .
+    container_name: zerotier
+    devices:
+      - /dev/net/tun
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    volumes:
+      - /var/lib/zerotier-one:/var/lib/zerotier-one
+    environment:
+      - ZEROTIER_NETWORK_ID=${ZEROTIER_NETWORK_ID}
+    restart: unless-stopped

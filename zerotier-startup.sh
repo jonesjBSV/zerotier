@@ -23,11 +23,10 @@ log() {
 check_zerotier_installed() {
     if ! command -v zerotier-cli &> /dev/null; then
         log "ZeroTier is not installed. Installing..."
-        curl -s https://install.zerotier.com | bash
-        if [ $? -ne 0 ]; then
+        curl -s https://install.zerotier.com | bash || {
             log "Failed to install ZeroTier"
             exit 1
-        fi
+        }
         log "ZeroTier installed successfully"
     fi
 }
@@ -44,7 +43,7 @@ join_network() {
     if [ -z "$ZEROTIER_NETWORK_ID" ]; then
         log "ERROR: ZEROTIER_NETWORK_ID not set"
         exit 1
-    }
+    fi
 
     log "Joining ZeroTier network: $ZEROTIER_NETWORK_ID"
     zerotier-cli join "$ZEROTIER_NETWORK_ID"
