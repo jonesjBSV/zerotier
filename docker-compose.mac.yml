@@ -1,0 +1,18 @@
+version: '3'
+services:
+  zerotier:
+    build: .
+    container_name: zerotier
+    devices:
+      - /dev/tun # Different device path on macOS
+    network_mode: host
+    privileged: true # Required for macOS
+    volumes:
+      - zerotier-data:/var/lib/zerotier-one
+    environment:
+      - ZEROTIER_NETWORK_ID=${ZEROTIER_NETWORK_ID}
+      - ZEROTIER_CENTRAL_TOKEN=${ZEROTIER_CENTRAL_TOKEN}
+    restart: unless-stopped
+
+volumes:
+  zerotier-data:
