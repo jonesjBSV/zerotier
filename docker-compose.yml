@@ -13,4 +13,5 @@ services:
       - /var/lib/zerotier-one:/var/lib/zerotier-one
     environment:
       - ZEROTIER_NETWORK_ID=${ZEROTIER_NETWORK_ID}
+      - ZEROTIER_CENTRAL_TOKEN=${ZEROTIER_CENTRAL_TOKEN}
     restart: unless-stopped
